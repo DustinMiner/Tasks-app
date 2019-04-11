@@ -15,7 +15,12 @@ window.addEventListener("load", function() {
  // document.getElementsByCLassName always returns a collection and selects elements based on their classes
 
  var tasks = document.getElementsByClassName("task");
- console.log(tasks);
+ 
+ // document.querySelector was inspired by the jquery library. It will always return one element, not a collection. If you are searching for a class or an ID you need to prepend it with a period or a pound sign.  
+ var taskButton = document.querySelector("#task-button");
+ var taskList = document.querySelector("#task-list");
+ var contentField = document.querySelector("#name");
+ // document.querySelectorAll(); Will return a collection of elements even if it only finds one. 
 
 //   console.log(headings[0]);
   heading.innerHTML = "This is my new heading!";
@@ -31,10 +36,21 @@ window.addEventListener("load", function() {
     var task = tasks[i]
 
     task.addEventListener("click", function() {
-      console.log(task);
-;
+      event.target.classList.toggle("completed");
+
     });
   }
+
+  taskButton.addEventListener("click", function() {
+    var newTask = document.createElement("li");
+    newTask.innerHTML = contentField.value;
+    contentField.value = "";
+    taskList.appendChild(newTask);
+    newTask.addEventListener("click"), function() {
+      event.target.classList.toggle("completed");
+
+    }
+  });
   
 });
     
